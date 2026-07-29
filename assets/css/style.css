@@ -387,3 +387,27 @@ a:focus-visible, button:focus-visible{
         bottom:18px;
     }
 }
+.floating-call{
+    position:fixed;
+    bottom:96px;
+    right:24px;
+    width:60px;
+    height:60px;
+    background:#007AFF;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 30px rgba(0,122,255,.35);
+    z-index:9999;
+    transition:.3s;
+}
+
+.floating-call:hover{
+    transform:scale(1.08);
+}
+
+.floating-call svg{
+    width:28px;
+    height:28px;
+}
