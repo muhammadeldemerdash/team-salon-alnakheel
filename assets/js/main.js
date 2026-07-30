@@ -9,4 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
       a.addEventListener('click', function () { nav.classList.remove('open'); });
     });
   }
+
+  document.querySelectorAll('.dropdown-arrow').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var item = btn.closest('.nav-item');
+      if (item) { item.classList.toggle('open'); }
+    });
+  });
 });
