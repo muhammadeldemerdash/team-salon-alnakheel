@@ -167,15 +167,24 @@ img{ max-width:100%; display:block; }
 @media (max-width: 880px){
   /* Header uses backdrop-filter, which creates a new containing block for
      any fixed-position descendant. That was making the fixed mobile menu
-     size/position itself against the ~70px header box instead of the
-     viewport, letting page content show through around it. Dropping the
-     blur while the menu is open (see body.nav-open rule below) removes
-     that containing block so the menu positions against the viewport
-     as intended. */
+     size/position itself against the header box instead of the viewport.
+     Dropping the blur while the menu is open (see body.nav-open rule
+     below) removes that containing block so the menu positions against
+     the viewport as intended.
+
+     The menu no longer starts at a guessed pixel offset (the header's
+     real rendered height varies with content, e.g. the two-line brand
+     label, and a hardcoded number left a sliver where hero content
+     showed through). Instead .main-nav covers the entire viewport
+     (inset:0) and the header is stacked above it via z-index in the
+     body.nav-open rule below — so the header always crops the overlay's
+     top edge to its own true height, with no gap possible either way. */
   .main-nav{
-    position:fixed; inset:70px 0 0 0;
+    position:fixed; inset:0;
     background:var(--bg); /* solid — no transparency */
-    flex-direction:column; align-items:flex-start; padding:28px 24px;
+    flex-direction:column; align-items:flex-start;
+    padding:90px 24px 28px; /* top clears the header; header's own opaque
+                                box is still the thing guaranteeing coverage */
     transform:translateY(-8px); opacity:0; pointer-events:none;
     transition:opacity .25s ease, transform .25s ease, visibility .25s;
     visibility:hidden;
@@ -198,15 +207,20 @@ img{ max-width:100%; display:block; }
   }
   .nav-toggle span{ width:24px; height:2px; background:var(--text); display:block; }
 
-  /* This is the rule the comment above refers to, and it was missing —
-     which is why the menu still looked transparent/broken. While the
-     menu is open, kill the header's backdrop-filter so the header stops
-     acting as a containing block for the fixed .main-nav. Once that's
-     gone, .main-nav (position:fixed, solid var(--bg)) sizes and paints
-     itself against the real viewport with a fully opaque background. */
+  /* While the menu is open: kill the header's backdrop-filter so it
+     stops acting as a containing block for the fixed .main-nav (so the
+     nav sizes/positions itself against the real viewport, not the
+     header box); make the header fully opaque instead of its normal
+     ~92%-alpha blur so nothing bleeds through it; and put it above the
+     nav overlay (higher z-index) so it always visually crops the
+     overlay's top edge to the header's own true rendered height —
+     this is what makes the menu "start directly below the header"
+     with no gap, regardless of how tall the header actually is. */
   body.nav-open .site-header{
+    background:var(--bg);
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
+    z-index:10001; /* above .main-nav's z-index:10000 */
   }
 
   /* Dropdown becomes a tap-to-open accordion on mobile instead of a
