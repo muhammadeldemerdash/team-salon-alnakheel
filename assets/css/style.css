@@ -138,8 +138,8 @@ img{ max-width:100%; display:block; }
 .header-cta{ display:flex; gap:10px; }
 .nav-toggle{ display:none; }
 
-/* ---------- Nav dropdown (خدماتنا) ---------- */
-.nav-item{ position:relative; display:flex; align-items:center; }
+/* ---------- Nav dropdown (خدماتنا) — single source of truth ---------- */
+.nav-item{ position:relative; display:flex; align-items:center; gap:6px; }
 .nav-item > a{ display:inline-flex; align-items:center; gap:5px; }
 .dropdown-arrow{
   background:none; border:none; cursor:pointer; color:inherit;
@@ -147,6 +147,7 @@ img{ max-width:100%; display:block; }
 }
 .dropdown-arrow svg{ width:10px; height:10px; transition:transform .2s ease; }
 .dropdown-menu{ list-style:none; margin:0; padding:0; }
+.dropdown-menu li{ margin:0; }
 
 @media (min-width:881px){
   .dropdown-menu{
@@ -196,6 +197,29 @@ img{ max-width:100%; display:block; }
     background:none; border:none; cursor:pointer; padding:6px;
   }
   .nav-toggle span{ width:24px; height:2px; background:var(--text); display:block; }
+
+  /* This is the rule the comment above refers to, and it was missing —
+     which is why the menu still looked transparent/broken. While the
+     menu is open, kill the header's backdrop-filter so the header stops
+     acting as a containing block for the fixed .main-nav. Once that's
+     gone, .main-nav (position:fixed, solid var(--bg)) sizes and paints
+     itself against the real viewport with a fully opaque background. */
+  body.nav-open .site-header{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  /* Dropdown becomes a tap-to-open accordion on mobile instead of a
+     hover flyout: nav-item stacks (link, arrow, menu) and the menu is
+     shown only when .nav-item has the .open class (toggled by JS). */
+  .nav-item{ width:100%; display:block; }
+  .dropdown-arrow{ position:absolute; left:0; top:18px; }
+  .dropdown-menu{
+    position:static; display:none; background:none; border:none; box-shadow:none;
+    padding:0 15px; min-width:100%;
+  }
+  .dropdown-menu li a{ border:none; }
+  .nav-item.open .dropdown-menu{ display:block; }
 }
 
 /* ---------- Scissors divider (signature motif) ---------- */
@@ -452,91 +476,4 @@ a:focus-visible, button:focus-visible{
 .floating-call svg{
     width:28px;
     height:28px;
-}/* ===== Header Dropdown ===== */
-
-.main-nav .nav-item{
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:6px;
-}
-
-.dropdown-arrow{
-    background:none;
-    border:none;
-    color:var(--text);
-    cursor:pointer;
-    padding:0;
-    display:flex;
-    align-items:center;
-}
-
-.dropdown-arrow svg{
-    width:12px;
-    height:12px;
-    transition:.3s;
-}
-
-.dropdown-menu{
-    position:absolute;
-    top:100%;
-    right:0;
-    min-width:260px;
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:8px 0;
-    list-style:none;
-    display:none;
-    z-index:999;
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
-
-.dropdown-menu li{
-    margin:0;
-}
-
-.dropdown-menu li a{
-    display:block;
-    padding:12px 18px;
-    color:var(--text);
-    border:none !important;
-}
-
-.dropdown-menu li a:hover{
-    background:rgba(255,255,255,.06);
-    color:var(--accent);
-}
-
-.main-nav .nav-item:hover .dropdown-menu{
-    display:block;
-}
-
-@media(max-width:880px){
-
-.main-nav .nav-item{
-    width:100%;
-    display:block;
-}
-
-.dropdown-arrow{
-    position:absolute;
-    left:0;
-    top:18px;
-}
-
-.dropdown-menu{
-    position:static;
-    display:none;
-    background:none;
-    border:none;
-    box-shadow:none;
-    padding:0 15px;
-    min-width:100%;
-}
-
-.nav-item.open .dropdown-menu{
-    display:block;
-}
-
 }
