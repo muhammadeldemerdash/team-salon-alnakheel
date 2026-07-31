@@ -2,11 +2,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.querySelector('.main-nav');
   if (toggle && nav) {
+    var setOpen = function (isOpen) {
+      nav.classList.toggle('open', isOpen);
+      document.body.classList.toggle('nav-open', isOpen);
+    };
     toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
+      setOpen(!nav.classList.contains('open'));
     });
     nav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('open'); });
+      a.addEventListener('click', function () { setOpen(false); });
     });
   }
 
