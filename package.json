@@ -1,0 +1,10 @@
+{
+  "name": "team-salon-alnakheel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Team Salon Al Nakheel static site with Git-based CMS content",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node scripts/serve.js"
+  }
+}
