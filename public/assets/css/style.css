@@ -455,15 +455,6 @@ a:focus-visible, button:focus-visible{
     height:28px;
 }
 
-/* Mobile: keep content unobstructed; contact actions remain in the header and CTA sections. */
-@media (max-width: 600px) {
-  .floating-whatsapp,
-  .floating-call,
-  .wa-float {
-    display: none !important;
-  }
-}
-
 
 /* ===========================================================
    Brand refresh — supplied Al Nakheel identity
@@ -498,7 +489,7 @@ a:focus-visible, button:focus-visible{
 .ticket-title{font-size:1.05rem;color:var(--accent-light);margin:0}
 .ticket .desc{color:var(--text-muted);line-height:1.75}
 .offers-posters-section{background:linear-gradient(180deg,var(--bg),var(--bg-panel-2))}
-.offers-posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start;max-width:960px;margin-inline:auto}
+.offers-posters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start;max-width:1100px;margin-inline:auto}
 .offer-poster{margin:0;overflow:hidden;border:1px solid var(--line);background:var(--bg-panel-2);box-shadow:var(--shadow)}
 .offer-poster img{width:100%;height:auto;display:block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
 .offer-poster:hover img{transform:scale(1.018)}
@@ -519,7 +510,7 @@ a:focus-visible, button:focus-visible{
 .btn-primary:hover{box-shadow:0 16px 38px rgba(216,194,164,.36)}
 .btn-outline{background:rgba(252,247,240,.04)}.btn-outline:hover{background:rgba(216,194,164,.1)}
 .service-card,.article-card,.ticket,.offer-poster{border-radius:var(--radius)}
-.offers-posters-section{background:linear-gradient(180deg,var(--bg),var(--bg-panel-2))}.offers-posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start;max-width:960px;margin-inline:auto}.offer-poster{margin:0;overflow:hidden;border:1px solid var(--line);background:var(--bg-panel-2);box-shadow:var(--shadow)}.offer-poster img{width:100%;height:auto;display:block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.offer-poster:hover img{transform:scale(1.018)}
+.offers-posters-section{background:linear-gradient(180deg,var(--bg),var(--bg-panel-2))}.offers-posters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start;max-width:1100px;margin-inline:auto}.offer-poster{margin:0;overflow:hidden;border:1px solid var(--line);background:var(--bg-panel-2);box-shadow:var(--shadow)}.offer-poster img{width:100%;height:auto;display:block;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.offer-poster:hover img{transform:scale(1.018)}
 @media(max-width:720px){.offers-posters{grid-template-columns:1fr;gap:20px}.ticket{align-items:flex-start;padding:26px 22px;gap:16px}.ticket .price{font-size:2.15rem}}
 @media(prefers-reduced-motion:reduce){.offer-poster img,.service-card,.article-card,.ticket{transition:none}}
 
@@ -974,6 +965,7 @@ a:focus-visible, button:focus-visible{
 }
 .package-card:nth-child(2n) .package-image-box img{object-position:65% center}
 .package-card:nth-child(3n) .package-image-box img{object-position:35% center}
+.package-card.package-card--diamond .package-image-box img{object-position:70% center}
 .package-card:hover .package-image-box img{transform:scale(1.045)}
 .package-icon-wrap{
   position:absolute;

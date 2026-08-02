@@ -150,8 +150,9 @@ const packageArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17
 const offerCard = (o, index = 0) => {
   const image = o.image || offerImages[index % offerImages.length];
   const isVip = String(o.category).includes('VIP');
+  const isDiamond = o.title === 'الباقة الماسية';
   const message = encodeURIComponent(`مرحباً، أريد الاستفسار عن ${o.title || o.category} بسعر ${o.price} ${o.currency || 'ريال'}`);
-  return `<article class="package-card ${isVip ? 'package-card--vip' : ''}">
+  return `<article class="package-card ${isVip ? 'package-card--vip' : ''}${isDiamond ? ' package-card--diamond' : ''}">
           <div class="package-card-inner">
             <div class="package-image-box">
               <img src="${image}" alt="${esc(o.title || o.category)}" loading="lazy">
