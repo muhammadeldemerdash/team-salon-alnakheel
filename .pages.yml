@@ -36,6 +36,7 @@ content:
           - { name: title, label: اسم الخدمة, type: string, required: true }
           - { name: summary, label: الوصف المختصر, type: text, required: true }
           - { name: description, label: الوصف الكامل, type: text, required: true }
+          - { name: url, label: رابط صفحة الخدمة, type: string, required: true }
 
   - name: offers
     label: العروض

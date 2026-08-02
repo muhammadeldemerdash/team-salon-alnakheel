@@ -128,6 +128,7 @@ ${services.map((s, i) => `        <article class="service-card service-card--pre
           <h3>${esc(s.title)}</h3>
           <span class="service-title-line" aria-hidden="true"></span>
           <p>${esc(text(s))}</p>
+          <a class="service-read-more" href="${esc(s.url || 'services.html')}">اقرأ المزيد ←</a>
         </article>`).join('\n')}
       </div>
       <div class="service-benefits" aria-label="مميزات خدماتنا">
@@ -161,16 +162,18 @@ const offerCard = (o, index = 0) => {
               <a class="package-icon-box" href="https://wa.me/${site.whatsapp}?text=${message}" target="_blank" rel="noopener" aria-label="استفسر عن ${esc(o.title || o.category)}">${packageArrow}</a>
             </div>
           </div>
-          <div class="package-content">
+          <div class="package-card-content">
             <div class="package-title-row">
               <h3>${esc(o.title || o.category)}</h3>
               <span class="package-price"><b>${esc(o.price)}</b><small>${esc(o.currency || 'ريال')}</small></span>
             </div>
             <p>${esc(o.description)}</p>
-            <ul class="package-tags" aria-label="تفاصيل الباقة">
-              <li class="package-tag package-tag--category">${esc(o.category)}</li>
-              <li class="package-tag package-tag--booking">حجز عبر واتساب</li>
-            </ul>
+            <div class="package-card-actions">
+              <ul class="package-tags" aria-label="تفاصيل الباقة">
+                <li class="package-tag package-tag--category">${esc(o.category)}</li>
+                <li class="package-tag package-tag--booking">حجز عبر واتساب</li>
+              </ul>
+            </div>
           </div>
         </article>`;
 };
