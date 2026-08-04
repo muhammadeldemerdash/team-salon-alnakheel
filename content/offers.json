@@ -1,0 +1,67 @@
+{
+  "offers": [
+    {
+      "category": "الباقات الأساسية",
+      "title": "الباقة الفضية",
+      "price": "149",
+      "currency": "ريال",
+      "description": "حلاقة شعر + لحية + سنفرة بالبخار + لاصقة أنف + غسيل",
+      "image": "assets/images/silver.webp",
+      "featured": true
+    },
+    {
+      "category": "الباقات الأساسية",
+      "title": "الباقة الذهبية",
+      "price": "224",
+      "currency": "ريال",
+      "description": "حلاقة شعر + لحية + واكس كامل للوجه + سنفرة بالبخار + لاصقة أنف",
+      "image": "assets/images/gold.webp",
+      "featured": true
+    },
+    {
+      "category": "الباقات الأساسية",
+      "title": "الباقة الماسية",
+      "price": "334",
+      "currency": "ريال",
+      "description": "حلاقة شعر + لحية + تنظيف بشرة + حمام زيت + لاصقة أنف + غسيل + شمع كامل للوجه",
+      "image": "assets/images/diamond.webp",
+      "featured": true
+    },
+    {
+      "category": "باقات VIP",
+      "title": "باكدج VIP الفخامة",
+      "price": "334",
+      "currency": "ريال",
+      "description": "قص الشعر + حلاقة اللحية بالبخار + حمام زيت معالج وتنظيف بشرة 4 مراحل + مساج استرخائي للجسم 60 دقيقة + قهوة مخصصة",
+      "image": "assets/images/vip.webp",
+      "featured": true
+    },
+    {
+      "category": "الباقات الأساسية",
+      "title": "باقة تيم صالون",
+      "price": "498",
+      "currency": "ريال",
+      "description": "حلاقة شعر + لحية + تنظيف بشرة بروفيشنال + حمام زيت معالج + شمع كامل للوجه + بديكير يد وقدم",
+      "image": "assets/images/logo.png",
+      "featured": false
+    },
+    {
+      "category": "باقات VIP",
+      "title": "باكدج VIP الراحة",
+      "price": "370",
+      "currency": "ريال",
+      "description": "قص الشعر + حلاقة اللحية بالبخار + تنظيف بشرة بالبخار + مساج للرقبة والكتفين 30 دقيقة + مشروب مخصص",
+      "image": "assets/images/vip.webp",
+      "featured": false
+    },
+    {
+      "category": "باقات VIP",
+      "title": "باكدج VIP الاستشفاء العميق",
+      "price": "498",
+      "currency": "ريال",
+      "description": "قص الشعر + حلاقة اللحية بالبخار + حمام زيت معالج + جلسة بخار 4 مراحل + عناية باليدين والقدمين + مساج تايلندي للجسم 60 دقيقة + مشروب خاص",
+      "image": "assets/images/vip.webp",
+      "featured": false
+    }
+  ]
+}
