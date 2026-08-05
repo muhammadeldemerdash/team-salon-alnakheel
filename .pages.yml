@@ -56,6 +56,19 @@ content:
           - { name: description, label: تفاصيل العرض, type: text, required: true }
           - { name: featured, label: إظهار في الرئيسية, type: boolean, default: false }
 
+  - name: service-pages
+    label: صفحات الخدمات
+    type: collection
+    path: content/service-pages
+    format: yaml-frontmatter
+    filename: "{slug}.md"
+    fields:
+      - { name: title, label: اسم الخدمة, type: string, required: true }
+      - { name: slug, label: رابط الصفحة بالإنجليزية, type: string, required: true, pattern: "^[a-z0-9-]+$" }
+      - { name: seoTitle, label: SEO Title, type: string, required: true }
+      - { name: seoDescription, label: Meta Description, type: text, required: true }
+      - { name: body, label: محتوى الصفحة, type: rich-text, required: true }
+
   - name: articles
     label: المقالات
     type: collection

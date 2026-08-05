@@ -87,6 +87,16 @@ const articles = fs.readdirSync(path.join(contentDir, 'articles'))
   .filter(a => a.data.published !== false)
   .sort((a, b) => String(b.data.date).localeCompare(String(a.data.date)));
 
+const servicePagesDir = path.join(contentDir, 'service-pages');
+const servicePages = {};
+if (fs.existsSync(servicePagesDir)) {
+  for (const file of fs.readdirSync(servicePagesDir)) {
+    if (!file.endsWith('.md')) continue;
+    const key = file.replace(/\.md$/, '');
+    servicePages[key] = { file, ...parseFrontmatter(read(path.join(servicePagesDir, file))) };
+  }
+}
+
 function applySite(html) {
   const replacements = [
     [/https:\/\/teamsalon-alnakheel\.sa/g, site.domain.replace(/\/$/, '')],
@@ -205,6 +215,39 @@ for (const entry of fs.readdirSync(templates, { withFileTypes: true })) {
     html = replaceMarked(html, 'SERVICES', serviceCardsPage);
   } else if (entry.name === 'offers.html') {
     html = replaceMarked(html, 'OFFERS', allOffers);
+  }
+  const pageName = entry.name.replace(/\.html$/, '');
+  if (servicePages[pageName]) {
+    const sp = servicePages[pageName].data;
+    html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(sp.seoTitle || sp.title)}</title>`);
+    const meta = `<meta name="description" content="${esc(sp.seoDescription || '')}">`;
+    html = html.replace(/<\/head>/, `${meta}\n</head>`);
+    const main = `<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">الرئيسية</a> / <a href="/services/">خدماتنا</a> / ${esc(sp.title)}</div>
+      <h1>${esc(sp.title)}</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-body">
+      ${markdownToHtml(servicePages[pageName].body)}
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>جاهز تحجز موعدك؟</h2>
+      <p>تواصل معنا الآن عبر واتساب أو اتصل مباشرة.</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="https://wa.me/${esc(site.whatsapp)}" target="_blank" rel="noopener">احجز عبر واتساب</a>
+        <a class="btn btn-outline" href="tel:${esc(site.phone)}">اتصل الآن</a>
+      </div>
+    </div>
+  </section>
+</main>`;
+    html = html.replace(/<main>[\s\S]*?<\/main>/, main);
   }
   fs.writeFileSync(path.join(dist, entry.name), html);
 }
