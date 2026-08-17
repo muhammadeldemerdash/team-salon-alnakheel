@@ -3,7 +3,7 @@ title: طريقة عمل الاستشوار للشعر الخشن للرجال
 slug: how-to-blow-dry-coarse-hair-for-men
 excerpt: تعرف على طريقة عمل الاستشوار للشعر الخشن للرجال بخطوات تساعد على تنعيم
   الشعر وتصفيفه بشكل مرتب مع نصائح للحفاظ عليه.
-category: articles
+category: الحلاقة
 date: 2026-08-17
 author: فريق Team Salon
 image: /assets/images/uploads/banner.avif
